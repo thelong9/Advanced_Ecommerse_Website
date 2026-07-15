@@ -55,11 +55,11 @@ post_save.connect(create_profile, sender=User)
 # All of our Products
 class Product(models.Model):
 	tiki_product_id = models.IntegerField(unique=True, default=0)
-	name = models.CharField(max_length=100, db_index=True)
+	name = models.CharField(max_length=255, db_index=True)
 	price = models.IntegerField(default=0)
 	category = models.ForeignKey(Category, on_delete=models.CASCADE, default=1)
 	description = models.CharField(max_length=250, default='', blank=True, null=True)
-	image = models.CharField(max_length=100)
+	image = models.CharField(max_length=255)
 	brand_id = models.IntegerField(default=0)
 	brand_name = models.CharField(max_length=100, default='', db_index=True)
 	created_at = models.DateTimeField(auto_now_add=True)
