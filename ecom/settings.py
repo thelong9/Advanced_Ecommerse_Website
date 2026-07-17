@@ -31,9 +31,13 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.postgres',  
 
+    'rest_framework',
+    'django_filters',
+
     'store',
     'cart',
     'payment',
+    'api',
 ]
 
 MIDDLEWARE = [
@@ -70,16 +74,9 @@ TEMPLATES = [
 WSGI_APPLICATION = 'ecom.wsgi.application'
 
 
-# Database
-# https://docs.djangoproject.com/en/4.2/ref/settings/#databases
-
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
-
+# =============================================================================
+# DATABASE — PostgreSQL
+# =============================================================================
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
@@ -94,6 +91,27 @@ DATABASES = {
         'CONN_MAX_AGE': 600,  # Connection pooling
     }
 }
+
+# =============================================================================
+# DJANGO REST FRAMEWORK
+# =============================================================================
+REST_FRAMEWORK = {
+    # Phân trang mặc định
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 20,
+    
+    # Quyền mặc định: ai cũng đọc được, phải đăng nhập mới ghi được
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticatedOrReadOnly',
+    ],
+
+    # Xác thực bằng Session (cho browsable API) + JWT (cho mobile/frontend)
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ],
+}
+
 
 
 # Password validation
