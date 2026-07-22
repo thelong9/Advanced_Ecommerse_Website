@@ -8,7 +8,7 @@ class CategorySerializer(serializers.ModelSerializer):
         model = Category
         fields = ['id', 'name']
 
-class ProductSerializer(serializers.ModelSerializer):
+class ProductListSerializer(serializers.ModelSerializer):
     """Serializer for Product - list"""
 
     category = CategorySerializer(read_only=True)
@@ -23,6 +23,6 @@ class ProductSerializer(serializers.ModelSerializer):
             'image',
             'brand_name',
             'is_active',
-            'created_at',
-            'updated_at'
+            # 'avg_rating', 
+            # 'rating_count',
         ]
