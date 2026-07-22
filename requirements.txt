@@ -1,0 +1,15 @@
+# ENVIROMENTs
+python-dotenv
+psycopg2
+
+# RECOMMEND SYSTEM
+numpy
+pandas
+tqdm
+
+#DJANGO
+django
+djangorestframework
+
+sqlalchemy
+

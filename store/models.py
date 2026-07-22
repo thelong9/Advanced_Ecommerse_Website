@@ -83,7 +83,7 @@ class Product(models.Model):
 
 
 class Rating(models.Model):
-	product_id= models.ForeignKey(
+	product= models.ForeignKey(
 		Product, on_delete=models.CASCADE, 
 		to_field='tiki_product_id', related_name='ratings')
 	title = models.CharField(max_length=100, default='')
@@ -93,15 +93,15 @@ class Rating(models.Model):
 	created_at = models.DateTimeField(auto_now_add=True, null=True)
 
 	def __str__(self):
-		return f"{self.customer_name}: {self.rating}/5 - {self.product_id}"
+		return f"{self.customer_name}: {self.rating}/5 - {self.product}"
 
-	class Meta:
-		# Allow each customer can only rate a product once
-		constraints = [
-			models.UniqueConstraint(
-				fields=['product_id', 'customer_id'], # (product_id, customer_id) has to be unique
-				name='unique_customer_product_rating'
-			)
-		]
+	# class Meta:
+	# 	# Allow each customer can only rate a product once
+	# 	constraints = [
+	# 		models.UniqueConstraint(
+	# 			fields=['product', 'customer_id'], # (product, customer_id) has to be unique
+	# 			name='unique_customer_product_rating'
+	# 		)
+	# 	]
 	
 #Thêm rating và nối lại cho id sản phẩm match với id sp trong rating
