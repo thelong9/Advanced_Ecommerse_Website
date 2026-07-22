@@ -8,15 +8,9 @@ load_dotenv()
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
-# =============================================================================
 # SECURITY
-# =============================================================================
 SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'CHANGE-ME-IN-PRODUCTION')
-
 DEBUG = os.environ.get('DEBUG', 'False').lower() == 'true'
-
-# DEBUG=True
-
 ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', 'localhost,127.0.0.1').split(',')
 
 

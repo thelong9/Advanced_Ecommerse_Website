@@ -57,7 +57,7 @@ class Product(models.Model):
 	tiki_product_id = models.IntegerField(unique=True, default=0)
 	name = models.CharField(max_length=255, db_index=True)
 	price = models.IntegerField(default=0)
-	category = models.ForeignKey(Category, on_delete=models.CASCADE, default=1)
+	category = models.ForeignKey(Category, on_delete=models.CASCADE, default=1, related_name='products')
 	description = models.CharField(max_length=250, default='', blank=True, null=True)
 	image = models.CharField(max_length=255)
 	brand_id = models.IntegerField(default=0)
